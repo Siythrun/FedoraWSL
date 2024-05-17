@@ -13,6 +13,12 @@ jobs:
 
     - name: Build
       run: make all
+      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: Fedora Zip
+        path: Fedora40.zip
 
     - name: Clean Up
       run: make clean
