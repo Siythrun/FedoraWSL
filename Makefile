@@ -43,7 +43,7 @@ rootfs: base.tar
 
 base.tar:
 	@echo -e '\e[1;31mExporting base.tar using docker...\e[m'
-	docker run --name fedorawsl library/fedora@sha256:bfbb723c6d525340d62dfa3bc28b21bced53155ae3d485a6b18fde03570dc145 /bin/bash -c "dnf update -y; rpm -e --nodeps sudo; dnf clean all; pwconv; grpconv; chmod 0744 /etc/shadow; chmod 0744 /etc/gshadow;"
+	docker run --name fedorawsl registry.fedoraproject.org/fedora@sha256:9c53c2efc66cb082a7d03a6bfe58dc79eb71ecf993d11e3ae51dad154677d432 /bin/bash -c "dnf update -y; rpm -e --nodeps sudo; dnf clean all; pwconv; grpconv; chmod 0744 /etc/shadow; chmod 0744 /etc/gshadow;"
 	docker export --output=base.tar fedorawsl
 	docker rm -f fedorawsl
 
@@ -56,4 +56,4 @@ clean:
 	-rm rootfs.tar.gz
 	-sudo rm -r rootfs
 	-rm base.tar
-	-docker rmi library/fedora@sha256:bfbb723c6d525340d62dfa3bc28b21bced53155ae3d485a6b18fde03570dc145
+	-docker rmi registry.fedoraproject.org/fedora@sha256:9c53c2efc66cb082a7d03a6bfe58dc79eb71ecf993d11e3ae51dad154677d432
